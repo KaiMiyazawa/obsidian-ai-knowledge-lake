@@ -1,0 +1,83 @@
+# transcripter 設定ファイル例
+# このファイルを config.toml としてコピーし、必要な箇所だけ変更してください。
+# 設定の優先順位: CLI 引数 > config.toml > 既定値
+
+[defaults]
+model           = "turbo"      # Whisper モデル名
+asr_backend     = "faster-whisper" # faster-whisper / whisperx（±50ms整列・話者分離。要 --extra whisperx）
+# diarize       = false        # 話者分離（whisperx + HFトークン）
+# hf_token      = ""           # HuggingFace トークン（話者分離用。環境変数 HF_TOKEN も可）
+language        = "ja"         # 言語コード（"auto" で自動判定）
+format          = ["txt"]      # txt / json / srt / vtt / ass（カンマ区切りで複数）
+output_dir      = ""           # 空なら入力ファイルと同じ場所
+device          = "cpu"        # auto / cpu / cuda（Apple Silicon は cpu）
+compute_type    = "int8"       # int8 / float16 / int8_float16 / float32
+timestamps      = false        # txt に [HH:MM:SS] を付けるか
+word_timestamps = false        # word 単位時刻（srt/vtt/ass 指定時は自動有効）
+preview         = false        # 字幕を焼き込んだ確認用 mp4 を生成（動画のみ）
+preview_height  = 1080         # プレビュー高さ上限px（0で元のまま）
+preview_fps     = 30           # プレビューfps上限（0で元のまま）
+beam_size       = 5
+cpu_threads     = 0            # 0 = 自動
+
+# 精度向上（A: 前処理・語彙ヒント）
+denoise         = false        # 風切り音・ノイズ低減＋音量正規化（屋外/アクションカメラ向け）
+# vocab         = ["神戸", "ハーバーランド", "引地"]  # 固有名詞ヒント（認識バイアス）
+# initial_prompt = ""          # 認識ヒントの文（vocab より優先）
+condition_on_previous_text = true  # false でループ幻覚を抑制（--accurate は false）
+
+# 精度向上（C/D: LLM 後補正）。詳細は docs/subtitle-telop-plan.md
+[llm]
+correct         = false        # LLM で誤変換・句読点を後補正
+backend         = "ollama"     # ollama（ローカル・外部送信なし）/ anthropic（外部API・要オプトイン）
+model           = ""           # 空なら backend 既定（ollama: qwen2.5:7b / anthropic: claude-haiku-4-5）
+endpoint        = "http://localhost:11434"  # Ollama
+# api_key       = ""           # anthropic 用（環境変数 ANTHROPIC_API_KEY も可）
+
+[pdf]
+backend         = "pymupdf4llm" # pymupdf4llm（軽量・既定）/ docling（高精度・要 --extra docling）
+
+# ↓ 字幕テロップ機能。詳細は docs/subtitle-telop-plan.md / docs/davinci-workflow.md
+# [subtitle]
+# max_chars_per_line  = 14        # 1行の最大全角文字数（max_lines=2 のとき有効）
+# max_lines           = 1         # 最大行数（既定は 1＝一枚一行）
+# max_chars_per_cue   = 32        # 字幕1枚の最大文字数（1文がなるべく1枚に収まる長さ）
+# min_duration_s      = 1.2       # 最短表示秒（短い字幕は表示時間を延長）
+# max_duration_s      = 6.0       # 最長表示秒
+# max_cps             = 13.0      # 1秒あたり最大文字数（読み速度）
+# gap_split_s         = 0.8       # この無音秒数以上で字幕を分割
+# split_on_punctuation= true      # 句読点（。！？）で分割
+# line_break          = "balanced"# balanced / greedy
+# morph               = "auto"    # 形態素解析で語境界改行 auto/off/fugashi/janome/sudachi（要 --extra morph）
+# min_cue_chars       = 3         # これ未満の極小字幕は近い隣へ結合
+# split_on_speaker    = true      # 話者が変わったら字幕を分ける（話者分離時）
+# speaker_labels      = false     # 字幕に話者名（話者1：）を前置（話者分離時）
+# punctuation_mode    = "keep"    # keep / space（映画式）/ drop
+# strip_fillers       = false     # フィラー（えー/あの/まあ）除去
+# term_dictionary     = ""        # 表記/誤変換の置換CSV（例: 引き地,引地）
+#
+# [subtitle.style]                # テロップの見た目（ASS/焼き込みに反映。Resolveは docs 参照）
+# preset        = "outline"       # outline（白+黒縁）/ box（帯）/ cinema。無指定なら下記の既定値
+# font_family   = "Noto Sans JP"
+# font_bold     = true
+# font_italic   = false           # 斜体（和文は疑似オブリーク）
+# font_size_pct = 4.5             # フレーム高に対する %（既定は控えめ）
+# text_color    = "#FFFFFF"
+# outline       = false           # 既定は縁取りなし（白文字のみ）
+# outline_color = "#000000"
+# outline_width = 3.0             # ASS基準（Resolveのインスペクタでは 5〜6 相当）
+# box           = false           # 帯（背景）ON/OFF
+# box_color     = "#000000"
+# box_opacity   = 70              # 帯の不透明度 %（100=不透明）
+# shadow        = 0.0
+# position      = "bottom"        # bottom / top
+# margin_v_pct  = 10.0            # セーフエリア余白
+# alignment     = "center"        # left / center / right
+
+[paths]
+model_cache     = ""           # 空なら ~/.cache/huggingface
+ffmpeg          = "ffmpeg"      # PATH 上の名前 or 絶対パス
+
+[logging]
+level           = "info"       # debug / info / warning / error
+file            = ""           # 空ならコンソールのみ

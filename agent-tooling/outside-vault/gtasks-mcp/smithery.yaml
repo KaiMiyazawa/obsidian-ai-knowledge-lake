@@ -1,0 +1,30 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    properties:
+      googleClientId:
+        type: string
+        description: Google API Client ID. Required for authentication.
+      googleClientSecret:
+        type: string
+        description: Google API Client Secret. Required for authentication.
+      googleRefreshToken:
+        type: string
+        description: Google API Refresh Token. Required for authentication.
+    required: ["googleClientId", "googleClientSecret", "googleRefreshToken"]
+  commandFunction:
+    # A function that produces the CLI command to start the MCP on stdio.
+    |-
+    config => ({
+      command: 'npx',
+      args: ['-y', '@alvincrave/gtasks-mcp'],
+      env: {
+        GOOGLE_CLIENT_ID: config.googleClientId,
+        GOOGLE_CLIENT_SECRET: config.googleClientSecret,
+        GOOGLE_REFRESH_TOKEN: config.googleRefreshToken
+      }
+    })

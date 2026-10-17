@@ -1,0 +1,17 @@
+filters:
+  and:
+    - file.inFolder("00_self/decisions")
+    - file.hasProperty("decided")
+properties:
+  decided:
+    displayName: 決定日
+views:
+  - type: table
+    name: 時系列
+    order:
+      - file.name
+      - icon
+      - decided
+    sort:
+      - property: decided
+        direction: DESC

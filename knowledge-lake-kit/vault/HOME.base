@@ -1,0 +1,33 @@
+filters:
+  and:
+    - file.ext == "md"
+    - '!file.inFolder("79_template")'
+    - '!file.inFolder("tmp")'
+properties:
+  file.folder:
+    displayName: 領域
+  file.mtime:
+    displayName: 更新日時
+views:
+  - type: table
+    name: 最近更新
+    order:
+      - file.name
+      - icon
+      - file.folder
+      - file.mtime
+    sort:
+      - property: file.mtime
+        direction: DESC
+    limit: 50
+  - type: table
+    name: 領域別
+    groupBy:
+      property: file.folder
+      direction: ASC
+    order:
+      - file.name
+      - file.mtime
+    sort:
+      - property: file.mtime
+        direction: DESC

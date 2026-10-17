@@ -1,0 +1,5 @@
+{
+  "name": "send-confirm",
+  "version": "0.1.0",
+  "description": "gmail-unifierの送信直前に宛先・件名・本文・添付サイズを出し、ボタンひとつで送信を承認する"
+}

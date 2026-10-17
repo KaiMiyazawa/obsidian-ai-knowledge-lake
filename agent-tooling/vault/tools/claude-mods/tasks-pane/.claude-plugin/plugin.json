@@ -1,0 +1,6 @@
+{
+  "name": "tasks-pane",
+  "version": "0.1.3",
+  "description": "Google Tasksのagents / main / big / repeat / projectを横のパネルに出し、agentsのタスクはボタンで依頼文を入力欄に入れる",
+  "types": "./types/index.d.ts"
+}

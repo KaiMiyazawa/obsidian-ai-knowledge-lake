@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 __VAULT_ROOT__/tools/codex-hooks/guard.py",
+            "timeout": 30,
+            "statusMessage": "保管庫のGit状態を確認中..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^(Bash|apply_patch|Write|Edit)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 __VAULT_ROOT__/tools/codex-hooks/guard.py",
+            "timeout": 120,
+            "statusMessage": "Git操作と公開領域への書き込みを確認中..."
+          }
+        ]
+      }
+    ]
+  }
+}

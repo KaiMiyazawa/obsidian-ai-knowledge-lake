@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<style>
+  body { width: 440px; font: 13px -apple-system, sans-serif; margin: 12px; }
+  .row { display: flex; gap: 8px; align-items: center; margin: 6px 0; flex-wrap: wrap; }
+  input[type=number] { width: 56px; }
+  button { padding: 4px 10px; }
+  #guilds { border: 1px solid #ccc; max-height: 240px; overflow: auto; padding: 4px 6px; }
+  #guilds label { display: flex; gap: 6px; align-items: center; padding: 2px 0; }
+  #guilds .prog { margin-left: auto; color: #666; font-size: 11px; white-space: nowrap; }
+  #status { background: #f3f3f3; padding: 6px; white-space: pre-wrap; font: 11px ui-monospace, monospace; max-height: 200px; overflow: auto; }
+  .note { color: #666; font-size: 11px; margin: 4px 0; }
+</style>
+</head>
+<body>
+  <div><b>巡回（チェックしたサーバーの全チャンネルを最古まで遡る）</b></div>
+  <p class="note">Discord のタブを前面に出したまま、そのタブでこのポップアップを開く。閉じたフォルダ・カテゴリは一時的に開いて読み、元に戻す。
+  429 や休憩を挟んでも自動で続き、ページが再読み込みされても再開する。一晩放置するときは Mac をスリープさせない（README 参照）。</p>
+  <div class="row">
+    <button id="list">サーバー一覧を取得</button>
+    <button id="all">全選択</button>
+    <button id="none">全解除</button>
+    <span id="count" class="note"></span>
+  </div>
+  <div id="guilds"><span class="note">「サーバー一覧を取得」を押す</span></div>
+  <div class="row">
+    待ち <input id="minDelaySec" type="number" min="2">〜<input id="maxDelaySec" type="number" min="3"> 秒 ／
+    読み込み <input id="restEveryLoads" type="number" min="50"> 回ごとに30〜60分休む
+  </div>
+  <div class="row">
+    <label><input id="skipCompleted" type="checkbox"> 取得済み（最古まで取り終えた記録がある）チャンネルは飛ばす</label>
+  </div>
+  <div class="row">
+    <label><input id="noScrollRest" type="checkbox"> チャンネル内ではスクロールの間に休まない（休憩はチャンネルの切れ目で取る。429 では従来どおり休む）</label>
+  </div>
+  <div class="row">
+    <label><input id="noChannelRest" type="checkbox"> チャンネル間の休憩を挟まない（読み込み回数による休憩・429時の休憩は維持）</label>
+  </div>
+  <div class="row">
+    <button id="start">チェックしたサーバーを巡回</button>
+    <button id="stop">停止</button>
+    <button id="reset" title="完了済み・再開位置の記録を消す（記録したメッセージは消えない）">進捗をリセット</button>
+  </div>
+  <div id="status">…</div>
+  <script src="popup.js"></script>
+</body>
+</html>

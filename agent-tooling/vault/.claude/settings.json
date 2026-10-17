@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Slack__slack_search_*",
+      "mcp__claude_ai_Slack__slack_read_*",
+      "mcp__claude_ai_Slack__slack_get_*",
+      "mcp__claude_ai_Slack__slack_list_*",
+      "mcp__claude_ai_Gmail__search_*",
+      "mcp__claude_ai_Gmail__get_*",
+      "mcp__claude_ai_Gmail__list_*",
+      "mcp__claude_ai_Google_Drive__search_*",
+      "mcp__claude_ai_Google_Drive__list_*",
+      "mcp__claude_ai_Google_Drive__get_*",
+      "mcp__claude_ai_Google_Drive__download_*",
+      "mcp__claude_ai_Google_Drive__read_*",
+      "mcp__claude_ai_Google_Calendar__list_*",
+      "mcp__claude_ai_Google_Calendar__get_*",
+      "mcp__claude_ai_Google_Calendar__search_*",
+      "mcp__claude_ai_Google_Calendar__suggest_time",
+      "mcp__moneyforward-accounting__mfc_ca_get*",
+      "mcp__moneyforward-accounting__mfc_ca_currentOffice",
+      "mcp__moneyforward-accounting__mfc_ca_en_ja_dictionary",
+      "mcp__gtasks__list*",
+      "mcp__gtasks__search",
+      "mcp__gtasks__get*",
+      "mcp__gtasks__create",
+      "mcp__gtasks__update",
+      "mcp__gtasks__move",
+      "mcp__claude-in-chrome__find",
+      "mcp__claude-in-chrome__navigate",
+      "mcp__claude-in-chrome__get_page_text",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "mcp__claude-in-chrome__read_page",
+      "mcp__claude-in-chrome__select_browser",
+      "mcp__claude-in-chrome__list_connected_browsers",
+      "Bash(npm run *)",
+      "Bash(gh run watch:*)",
+      "Bash(git pull --rebase --autostash)",
+      "mcp__claude-in-chrome__computer",
+      "Bash(/Users/YOUR_USER/Desktop/Obsidian/tools/1password-ai-op.zsh item create:*)",
+      "mcp__gmail-unifier__list_mailboxes",
+      "mcp__gmail-unifier__search_mail",
+      "mcp__gmail-unifier__read_message",
+      "mcp__gmail-unifier__search_threads",
+      "mcp__gmail-unifier__get_thread",
+      "mcp__gmail-unifier__modify_labels",
+      "mcp__gmail-unifier__trash",
+      "mcp__gmail-unifier__create_draft"
+    ],
+    "ask": [
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "gtasks",
+            "tool": "list_with_tree",
+            "input": {
+              "taskListId": "<AGENTS_LIST_ID>"
+            },
+            "timeout": 15,
+            "statusMessage": "Google Tasksのagentsリストを確認中..."
+          }
+        ]
+      }
+    ]
+  }
+}

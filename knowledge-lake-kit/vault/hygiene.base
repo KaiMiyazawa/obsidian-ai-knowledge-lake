@@ -1,0 +1,22 @@
+filters:
+  and:
+    - file.ext == "md"
+    - '!file.inFolder("01_diary")'
+    - '!file.inFolder("79_template")'
+    - '!file.inFolder("tmp")'
+    - file.name != "README"
+    - or:
+        - '!file.hasProperty("updated")'
+        - '!file.hasProperty("visibility")'
+properties:
+  file.folder:
+    displayName: 領域
+views:
+  - type: table
+    name: updated・visibility 欠落
+    groupBy:
+      property: file.folder
+      direction: ASC
+    order:
+      - file.name
+      - file.mtime

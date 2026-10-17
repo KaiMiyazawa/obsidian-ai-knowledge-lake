@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Discord Passive Recorder",
+  "version": "0.8.2",
+  "description": "ブラウザ版Discordが読み込んだメッセージを、追加の通信なしでローカルの受信サーバーへ記録する。指定チャンネルを最古まで遡る巡回つき。",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "alarms",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:8765/*"
+  ],
+  "action": {
+    "default_title": "Discord Passive Recorder（バッジ = 未送信件数）",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://discord.com/*"
+      ],
+      "js": [
+        "hook.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://discord.com/*"
+      ],
+      "js": [
+        "bridge.js",
+        "crawler.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}

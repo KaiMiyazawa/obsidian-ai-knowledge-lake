@@ -1,0 +1,5 @@
+{
+  "name": "vault-guard",
+  "version": "0.1.0",
+  "description": "Obsidian保管庫のルールを機械的に守らせる: 公開領域から非公開ノートへのリンク、カレンダーの色ルール"
+}

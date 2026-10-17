@@ -1,0 +1,11 @@
+# この保管庫だけに効く Codex の設定。認証情報は書かない。
+
+# AGENTS.md が育って既定の上限（32KiB）を超えても、末尾まで読ませる。
+project_doc_max_bytes = 65536
+
+[features]
+hooks = true
+
+# MCP を足したら、書き込み系ツールは毎回承認にする。例:
+# [mcp_servers.<サーバー名>.tools.<送信系ツール名>]
+# approval_mode = "prompt"

@@ -1,0 +1,28 @@
+# Obsidian の端末ごとの設定（端末ごとに違うので追跡しない）
+.obsidian/workspace*.json
+.trash/
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# 一時ファイル
+tmp/
+*.tmp
+
+# エクスポート・ダウンロードのアーカイブ（展開して必要な分だけ残す）
+*.zip
+*.tar
+*.tar.gz
+
+# Claude Code の端末ごとの設定
+.claude/settings.local.json
+
+# Python キャッシュ
+__pycache__/
+
+# 大量の生データは .data/ に入れ、Git に入れたくなければここで除外する
+# **/.data/

@@ -1,0 +1,46 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "gtasks",
+            "tool": "list_with_tree",
+            "input": {
+              "taskListId": "<AGENTS_LIST_ID>"
+            },
+            "timeout": 15,
+            "statusMessage": "Google Tasksのagentsリストを確認中..."
+          }
+        ]
+      },
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /Users/YOUR_USER/Desktop/Obsidian/tools/codex-hooks/guard.py",
+            "timeout": 30,
+            "additionalContextLimit": 1000,
+            "statusMessage": "保管庫とサブモジュールのGit状態を確認中..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "^(Bash|apply_patch|Write|Edit|mcp__.*[Cc]alendar.*(create_event|update_event)|mcp__gmail[-_]unifier__(send_message|send_reply|forward|send_draft))$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /Users/YOUR_USER/Desktop/Obsidian/tools/codex-hooks/guard.py",
+            "timeout": 120,
+            "additionalContextLimit": 1000,
+            "statusMessage": "公開参照・カレンダー・Git・メール添付を確認中..."
+          }
+        ]
+      }
+    ]
+  }
+}

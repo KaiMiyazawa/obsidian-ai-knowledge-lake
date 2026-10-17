@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.py[cod]
+
+# These are machine-local OAuth client credentials and must never enter Git.
+client_secret*.json

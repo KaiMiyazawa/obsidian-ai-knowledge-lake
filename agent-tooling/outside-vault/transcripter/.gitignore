@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# 設定（ローカル）
+config.toml
+
+# データはこのリポジトリに置かない（コードのみ管理）。
+# 文字起こしテキスト → 保管庫 09_investment/ ／ 音声・動画 → ~/Documents/transcripter-media/
+outputs/
+audio/
+notes/
+*_digest/
+*.tmp.wav
+*.mp3
+*.m4a
+*.wav
+*.mp4
+*.mov
+*.MP4
+*.pdf
+
+# Claude Code のローカル許可設定
+.claude/settings.local.json
+
+# OS
+.DS_Store
+
+# テスト
+.pytest_cache/
+.ruff_cache/

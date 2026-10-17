@@ -1,0 +1,21 @@
+# Copy this file outside the repository, for example:
+#   macOS:    ~/.config/gmail-unifier/config.toml
+#   Windows:  %APPDATA%\\gmail-unifier\\config.toml
+#
+# This file identifies mailboxes but contains no credential. OAuth tokens and the
+# handle-signing key are stored in the current OS credential store.
+
+[[accounts]]
+id = "personal"
+email = "you@gmail.com"
+display_name = "個人"
+
+[[accounts]]
+id = "univ"
+email = "you@university.ac.jp"
+display_name = "大学"
+
+[[accounts]]
+id = "company"
+email = "you@company.example"
+display_name = "会社"

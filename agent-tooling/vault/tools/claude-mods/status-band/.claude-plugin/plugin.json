@@ -1,0 +1,6 @@
+{
+  "name": "status-band",
+  "version": "0.1.0",
+  "description": "入力欄の上に文脈の使用率・5時間/週間の利用枠とリセット時刻（JST）・Cloudクレジットの失効までを1行で出す",
+  "types": "./types/index.d.ts"
+}

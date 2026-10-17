@@ -1,0 +1,5 @@
+{
+  "name": "git-guard",
+  "version": "0.1.0",
+  "description": "保管庫のGit運用ルールを強制する: add/commit前の自動pull（ステージは保つ）、add -Aでの削除の巻き込み防止、force push禁止、起動時の遅れ表示"
+}

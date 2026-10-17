@@ -1,0 +1,40 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "obsidian-vault-mods",
+  "description": "Obsidian保管庫の運用ルールに合わせた自作mod。説明は 02_note/claude-code-mods.md",
+  "owner": {
+    "name": "Your Name"
+  },
+  "plugins": [
+    {
+      "name": "vault-guard",
+      "source": "./vault-guard",
+      "description": "Obsidian保管庫のルールを機械的に守らせる: 公開領域から非公開ノートへのリンク、カレンダーの色ルール",
+      "version": "0.1.0"
+    },
+    {
+      "name": "send-confirm",
+      "source": "./send-confirm",
+      "description": "gmail-unifierの送信直前に宛先・件名・本文・添付サイズを出し、ボタンひとつで送信を承認する",
+      "version": "0.1.0"
+    },
+    {
+      "name": "tasks-pane",
+      "source": "./tasks-pane",
+      "description": "Google Tasksのagents / main / big / repeatを横のパネルに出し、agentsのタスクはボタンで依頼文を入力欄に入れる",
+      "version": "0.1.2"
+    },
+    {
+      "name": "status-band",
+      "source": "./status-band",
+      "description": "入力欄の上に文脈の使用率・5時間/週間の利用枠とリセット時刻（JST）・Cloudクレジットの失効までを1行で出す",
+      "version": "0.1.0"
+    },
+    {
+      "name": "git-guard",
+      "source": "./git-guard",
+      "description": "保管庫のGit運用ルールを強制する: add/commit前の自動pull（ステージは保つ）、add -Aでの削除の巻き込み防止、force push禁止、起動時の遅れ表示",
+      "version": "0.1.0"
+    }
+  ]
+}
