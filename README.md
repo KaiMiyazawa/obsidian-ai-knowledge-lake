@@ -27,4 +27,7 @@ git clone https://github.com/KaiMiyazawa/obsidian-ai-knowledge-lake.git
 - 秘密の値（トークン・パスワード・Webhook など）は入っていない。作者の個人情報は伏せ字（`you@gmail.com`、`<MAIN_LIST_ID>` など）にしてある。
 - **自分の保管庫は private リポジトリで管理する。** このリポジトリを fork して中身を書き足し、公開したままにしない。
 - 道具は作者の環境（macOS、Claude Code・Codex の特定の版）で作ったもの。そのまま動く保証はなく、利用者の環境に合わせて AI と直しながら使う。
-- `agent-tooling/outside-vault/gtasks-mcp/` は [alvinjchoi/gtasks-mcp](https://github.com/alvinjchoi/gtasks-mcp)（MIT）を改造したもの。ライセンスは同フォルダの `LICENSE`。
+
+## ライセンス
+
+[MIT](LICENSE)。ただし `agent-tooling/outside-vault/gtasks-mcp/` は [alvinjchoi/gtasks-mcp](https://github.com/alvinjchoi/gtasks-mcp)（MIT）を改造したもので、同フォルダの `LICENSE` に従う。
